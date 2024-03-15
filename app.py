@@ -1,7 +1,7 @@
 import streamlit as st
 from handelsregister import HandelsRegister
 import argparse
-import requests
+
 
 # Titel der App
 st.title('Handelsregister Suche')
@@ -9,9 +9,9 @@ st.title('Handelsregister Suche')
 # Definition der Suchfunktion
 
 
-def search_company(schlagwoerter='uniper', schlagwortOptionen=2, ergebnisseProSeite=100, debug=False):
+def search_company(schlagwoerter='uniper', schlagwortOptionen='2', ergebnisseProSeite=100, debug=True):
     args = argparse.Namespace(
-        debug=False, force=False, schlagwoerter=schlagwoerter, schlagwortOptionen=2)
+        debug=True, force=True, schlagwoerter='uniper', schlagwortOptionen='1')
 
     h = HandelsRegister(args)
     h.open_startpage()
@@ -22,14 +22,7 @@ def search_company(schlagwoerter='uniper', schlagwortOptionen=2, ergebnisseProSe
 # Button für die Suche
 if st.button('Search for Uniper'):
     with st.spinner('Searching...'):
-        # companies = search_company(debug=True)
-        url = "https://www.handelsregister.de/rp_web/erweitertesuche.xhtml"
-        options = {
-            "schlagwoerter": "uniper",
-            "schlagwortOptionen": 1
-        }
-
-        companies = requests.post(url, data=options)
+        companies = search_company(debug=True)
         if companies and len(companies) > 0:
             # Hinzufügen von enumerate für einen Index
             # Verwende `enumerate` für den Index

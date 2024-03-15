@@ -1,3 +1,4 @@
+source myenv/bin/activate
 # Handelsregister API 
 
 Das Handelsregister stellt ein öffentliches Verzeichnis dar, das im Rahmen des Registerrechts Eintragungen über die angemeldeten Kaufleute in einem bestimmten geografischen Raum führt. 
